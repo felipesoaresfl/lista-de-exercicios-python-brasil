@@ -30,3 +30,11 @@ Acrescente 10% de folga e sempre arredonde os valores para cima, isto é, consid
 
 def calcular_latas_e_preco_de_tinta():
     """Escreva aqui em baixo a sua solução"""
+    area_a_ser_pintada = 16 #area em metros quadrados
+    area_com_folga = area_a_ser_pintada * 1.1
+    litros_por_metro = 6
+    litros_a_serem_usados = area_com_folga / litros_por_metro
+    litros_por_lata = 18
+    numero_de_latas = litros_a_serem_usados / litros_por_lata
+    print(litros_a_serem_usados, numero_de_latas)
+    
