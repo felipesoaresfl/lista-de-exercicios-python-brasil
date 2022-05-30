@@ -33,31 +33,27 @@ def calcular_latas_e_preco_de_tinta():
     area_a_ser_pintada = int(input('Digite a área, em metros quadrados a ser pintada: ')) #area em metros quadrados
     area_com_folga = area_a_ser_pintada * 1.1
     litros_por_metro = 6
-    litros_a_serem_usados = area_com_folga / litros_por_metro
+    litros_a_serem_usados = math.ceil(area_com_folga / litros_por_metro)
+    print(f'Você deve comprar {litros_a_serem_usados} litros de tinta.')
 
     #usando apenas latas
-    litros_por_lata = 18
-    numero_de_latas = math.ceil(litros_a_serem_usados / litros_por_lata)
+    numero_de_latas = math.ceil(litros_a_serem_usados / 18)
     valor_com_apenas_latas = numero_de_latas * 80
-    print(f'Você pode comprar {numero_de_latas} lata(s) de 18 litros, a um custo de R$ {valor_com_apenas_latas}')
+    sobra_latas = math.floor(numero_de_latas * 18 - litros_a_serem_usados)
+    print(f'Você pode comprar {numero_de_latas} lata(s) de 18 litros a um custo de R$ {valor_com_apenas_latas}. Vão sobrar {sobra_latas:.1f} litro(s) de tinta.') 
 
     #usando apenas galões
-    litros_por_galao = 3.6
-    numero_de_galoes = math.ceil(litros_a_serem_usados / litros_por_galao)
+    numero_de_galoes = math.ceil(litros_a_serem_usados / 3.6)
     valor_com_apenas_galoes = numero_de_galoes * 25
-    print(f'Você deverá usar {numero_de_galoes} galões de 3.6 litros, no valor de R$ {valor_com_apenas_galoes}')
+    sobra_galoes = numero_de_galoes * 3.6 - litros_a_serem_usados
+    print(f'Você pode comprar {numero_de_galoes} lata(s) de 3.6 litros a um custo de R$ {valor_com_apenas_galoes}. Vão sobrar {sobra_galoes:.1f} litro(s) de tinta.')
 
     #compra de tina otimizada por valor
-    numero_de_latas = math.floor(litros_a_serem_usados / litros_por_lata)
+    numero_de_latas = math.floor(litros_a_serem_usados / 18)
     valor_de_latas = numero_de_latas * 80
-    litros_faltantes = litros_a_serem_usados % litros_por_lata
-    numero_de_galoes = math.ceil(litros_faltantes / litros_por_galao)
+    litros_faltantes = litros_a_serem_usados % 18
+    numero_de_galoes = math.ceil(litros_faltantes / 3.6)
     valor_com_galoes = numero_de_galoes * 25
-    valor_total = +valor_de_latas + valor_com_galoes
-
-    print(f'Você deverá usar {numero_de_latas} latas de 18 litros mais {numero_de_galoes} galões de 3.6 litros, no valor de R$ {valor_total}')
-
-
-
-calcular_latas_e_preco_de_tinta()
-    
+    valor_total = valor_de_latas + valor_com_galoes
+    sobra_tinta_otimizada = (numero_de_latas * 18) + (numero_de_galoes * 3.6) - litros_a_serem_usados
+    print(f'Para menor custo, você pode comprar {numero_de_latas} lata(s) de 18 litros e {numero_de_galoes} galão(ões) de 3.6 litros a um custo de R$ {valor_total}. Vão sobrar {sobra_tinta_otimizada:.1f} litro(s) de tinta.')
