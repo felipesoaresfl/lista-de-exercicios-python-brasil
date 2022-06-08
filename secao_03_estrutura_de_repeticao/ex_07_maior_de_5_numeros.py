@@ -13,3 +13,9 @@ Faça um programa que leia 5 números e informe o maior número.
 
 def calcular_maior_numero(n1: int, n2: int, n3: int, n4: int, n5: int, ) -> int:
     """Escreva aqui em baixo a sua solução"""
+    lista = (n1, n2, n3, n4, n5)
+    
+    for n in lista:
+        if n >= max(lista):
+             maior = n
+    print(maior)
