@@ -107,5 +107,53 @@ comprados.
 """
 
 
+def cabecalho():
+    print('_____________________________________________________________________________')
+    print('|                              RESUMO DA CONTA                              |')
+    print('|---------------------------------------------------------------------------|')
+    print('| Epecificação     | Código | Preço Unitário (R$) | Quantidade | Total (R$) |')
+
+def fechamento(quantidade, valor):
+    print('|---------------------------------------------------------------------------|')
+    print(f'| Total Geral:                                    |         {quantidade:2d} |      {valor:5.2f} |')
+    print('-----------------------------------------------------------------------------')
+
 def fechar_conta(*itens):
     """Escreva aqui em baixo a sua solução"""
+    cabecalho()
+    cardapio ={
+        '100': ('Cachorro Quente', 1.20), 
+        '101': ('Bauru Simples', 1.30),
+        '102': ('Bauru com Ovo', 1.50),
+        '103': ('Hamburger', 1.20),
+        '104': ('Cheeseburger', 1.30),
+        '105': ('Refrigerante', 1.00) 
+    }
+
+    pedido = []
+    qtds = []
+    i=0
+    for ind, quantidade in itens:
+        if ind not in pedido:
+            pedido.append(ind)
+            qtds.append(quantidade)
+        else:
+            qtds[i-1]+= quantidade
+        i+=1
+
+    lista = []
+    i=0
+    valor_total = 0
+    qtd_total = 0
+    for indice in pedido:
+        for n in cardapio:
+            if indice == n:
+                lista = cardapio.get(n)
+                valor = lista[1]*qtds[i]
+
+                valor_total+= valor
+                qtd_total+=qtds[i]
+
+                print(f'| {lista[0]:15s}  | {indice}    | {lista[1]:<4.2f}                |          {qtds[i]:1d} |       {valor:4.2f} |')
+        i+=1
+    fechamento(qtd_total, valor_total)
