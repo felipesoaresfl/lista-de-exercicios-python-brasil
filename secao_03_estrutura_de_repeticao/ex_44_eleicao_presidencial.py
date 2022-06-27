@@ -90,3 +90,21 @@ from collections import Counter
 
 def apurar_votos(*votos):
     """Escreva aqui em baixo a sua solução"""
+    print('Código do Candidato Nome do Candidato Votos Porcentagem sobre total')
+    votacao = {
+        '1': 'Bostonaro    ',
+        '2': 'Luladrão     ',
+        '3': 'Dilmanta     ',
+        '4': 'FHC Isentão  ',
+        '5': 'Votos Nulos  ',
+        '6': 'Votos Brancos'
+    }
+    votos_candidatos = Counter(votos)
+    
+    for id, nome in votacao.items():
+        voto = votos_candidatos[id]
+        parcela_votos = (voto*100)/len(votos)
+
+        print(f'{id:1s}                   {nome:<1s}     {voto:<1n}     {parcela_votos:>5.1f}%')
+        if int(id)==4:
+            print('-------------------------------------------------------------------')
