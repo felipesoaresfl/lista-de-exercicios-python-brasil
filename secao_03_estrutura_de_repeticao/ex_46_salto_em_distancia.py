@@ -45,6 +45,38 @@ Mostre os valores com uma casa decimal sem arredondar.
 
 """
 
+from statistics import mean
+
+
+def tracinho():
+    print('---------------------------------')
 
 def calcular_estatiscas_do_salto(nome, *saltos):
     """Escreva aqui em baixo a sua solução"""
+    palavras = {
+        0:'Primeiro',
+        1:'Segundo',
+        2:'Terceiro',
+        3:'Quarto',
+        4:'Quinto',
+    }
+    i=0
+
+    print(f'Atleta: {nome}')
+    tracinho()
+    while i < len(saltos):
+        print(f'{palavras.get(i)} Salto: {saltos[i]} m')
+        i+=1
+    tracinho()
+    pulos = sorted(saltos)
+    melhor = pulos.pop()
+    pior = pulos.pop(0)
+    media = mean(pulos)
+    media-=0.1
+    
+    print(f'Melhor salto:  {melhor:.1f} m')
+    print(f'Pior salto: {pior:.1f} m')
+    print(f'Média dos demais saltos: {media:.1f} m')
+    tracinho()
+    print('Resultado final:')
+    print(f'{nome}: {media:.1f} m')
