@@ -18,7 +18,6 @@ Exemplo:
 
 """
 
-
 def inverter_inteiro(numero):
     """Escreva aqui em baixo a sua solução"""
     numero = str(numero)[::-1]
