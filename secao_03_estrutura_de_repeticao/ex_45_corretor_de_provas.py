@@ -45,7 +45,47 @@ Gabarito da Prova:
     Menor nota: 9
     Total de Alunos: 2
 """
-
+from statistics import mean
 
 def corrigir(*provas):
     """Escreva aqui em baixo a sua solução"""
+    print('Aluno                 Nota')
+    gabarito={
+        1:'A',
+        2:'B',
+        3:'C',
+        4:'D',
+        5:'E',
+        6:'E',
+        7:'D',
+        8:'C',
+        9:'B',
+        10:'A',
+    }
+    nome =''
+    maior = 0
+    menor = 10
+    total_alunos = 0
+    notas = []
+    for i in provas:
+        cont = 0
+        pontuacao = 0
+        while cont < len(i):
+            if len(i[cont])>1:
+                nome = i[cont]
+                total_alunos+=1
+            else:
+                if i[cont] == gabarito.get(cont):
+                    pontuacao+=1
+            cont+=1
+        notas.append(pontuacao)
+        if pontuacao > maior:
+            maior = pontuacao
+        if pontuacao < menor:
+            menor = pontuacao
+        print(f'{nome}                 {pontuacao}')
+    print('---------------------------')
+    print(f'Média geral: {mean(notas):.1f}')
+    print(f'Maior nota: {maior}')
+    print(f'Menor nota: {menor}')
+    print(f'Total de Alunos: {total_alunos}')
